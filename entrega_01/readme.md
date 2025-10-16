@@ -15,17 +15,18 @@ Passos realizados:
 Exemplo de código utilizado (referência):
 
 ```cpp
-// Mantém o LED interno aceso por X ms e apagado por Y ms
-// Ajuste os valores de X e Y conforme desejado
+// O LED interno está conectado ao pino 13
+int ledPin = 13;
+
 void setup() {
-	pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(ledPin, OUTPUT); // define o pino como saída
 }
 
 void loop() {
-	digitalWrite(LED_BUILTIN, HIGH); // acende
-	delay(500); // X ms
-	digitalWrite(LED_BUILTIN, LOW);  // apaga
-	delay(500); // Y ms
+  digitalWrite(ledPin, HIGH); // acende o LED
+  delay(1000);                // espera 1 segundo
+  digitalWrite(ledPin, LOW);  // apaga o LED
+  delay(1000);                // espera 1 segundo
 }
 ```
 
@@ -33,12 +34,13 @@ Evidências a seguir.
 
 ### Vídeo (Parte 1)
 
-- Link do vídeo: [INSIRA AQUI]
+- Link do vídeo: https://drive.google.com/file/d/1eouu2_eZGNdbbjaw1-vIiBp00lqK2IrD/view?usp=drive_link
 
 ### Imagens (Parte 1)
 
-- Screenshot da Arduino IDE com o código: [INSIRA AQUI]
-- Foto do Arduino conectado com LED aceso: [INSIRA AQUI]
+- Screenshot da Arduino IDE com o código: <img src='assets/arduino_parte1.png' align='justify-center'>
+
+- Foto do Arduino conectado com LED aceso: <img src='assets/circuito_parte1.jpg' align='justify-center'>
 
 ---
 
@@ -55,41 +57,39 @@ Passos realizados:
 Tinkercad — Código usado (obtido da simulação):
 
 ```cpp
-// Exemplo: LED no pino 13 via resistor
-const int PINO_LED = 13;
+// Definindo os pinos
+const int led1Pin = 9; // Pino do primeiro LED
+const int led2Pin = 13; // Pino do segundo LED
 
-void setup() {
-	pinMode(PINO_LED, OUTPUT);
+void setup()
+{
+  // Configurar os pinos dos LEDs como saída
+  pinMode(led1Pin, OUTPUT);
+  pinMode(led2Pin, OUTPUT);
 }
 
-void loop() {
-	digitalWrite(PINO_LED, HIGH);
-	delay(400); // ligado
-	digitalWrite(PINO_LED, LOW);
-	delay(400); // desligado
+void loop()
+{
+  // Acende o primeiro LED
+  digitalWrite(led1Pin, HIGH);
+  digitalWrite(led2Pin, LOW); // Desliga o segundo LED
+  delay(900); // Espera por 1000 milissegundos (1 segundo)
+
+  // Desliga o primeiro LED
+  digitalWrite(led1Pin, LOW);
+  digitalWrite(led2Pin, HIGH); // Acende o segundo LED
+  delay(900); // Espera por 1000 milissegundos (1 segundo)
 }
+
 ```
-
-### Link do Projeto no Tinkercad (Parte 2)
-
-- URL: [INSIRA AQUI]
 
 ### Vídeo (Parte 2)
 
-- Link do vídeo: [INSIRA AQUI]
+- Link do vídeo: https://drive.google.com/file/d/1M5YrQoi1XHPhT0iwI920BuM0X14y1n-7/view?usp=sharing
 
 ### Imagens (Parte 2)
 
-- Screenshot da simulação no Tinkercad com o circuito: [INSIRA AQUI]
+- Screenshot da simulação no Tinkercad com o circuito: 
+<img src='assets/circuito_parte2.png' align='justify-center'>
 
 ---
-
-## Observações
-
-- Subir as screenshots e fotos na pasta `entrega_01/assets/` e referenciá-las aqui quando disponíveis.
-- Caso os tempos X e Y sejam alterados, atualizar os comentários no código para manter a documentação coerente.
-
-## Como Executar (referência rápida)
-
-- Parte 1: Abrir a Arduino IDE, selecionar placa e porta, colar o código, compilar e fazer upload.
-- Parte 2: Abrir o link do Tinkercad, clicar em Play para iniciar a simulação. Copiar o código gerado e publicá-lo neste repositório.
