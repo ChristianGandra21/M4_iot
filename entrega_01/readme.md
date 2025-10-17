@@ -93,3 +93,7 @@ void loop()
 <img src='assets/circuito_parte2.png' align='justify-center'>
 
 ---
+
+## Indo além
+
+<img src='assets/indo_alem1.jpg' align='justify-center'>
