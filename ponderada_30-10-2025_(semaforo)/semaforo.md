@@ -4,7 +4,6 @@
 **Instituição:** Inteli - Instituto de Tecnologia e Liderança  
 **Curso:** Engenharia de Computação  
 **Data:** 30 de Outubro de 2025  
-**Contexto:** Departamento de Engenharia de Trânsito - Bairro Butantã
 
 ---
 
@@ -15,10 +14,7 @@
 3. [Parte 1: Montagem Física](#-parte-1-montagem-física)
 4. [Parte 2: Programação e Lógica](#-parte-2-programação-e-lógica)
 5. [Funcionamento do Sistema](#-funcionamento-do-sistema)
-6. [Diferenciais Implementados](#-diferenciais-implementados)
-7. [Testes e Validação](#-testes-e-validação)
-8. [Parte 3: Avaliação de Pares](#-parte-3-avaliação-de-pares)
-9. [Referências](#-referências)
+6. [Parte 3: Avaliação de Pares](#-parte-3-avaliação-de-pares)
 
 ---
 
@@ -46,18 +42,8 @@ O semáforo deve alternar entre as cores **vermelho**, **amarelo** e **verde** c
 | **LED Verde** | 5mm, 2V, 20mA | 1 | Sinalização de passagem |
 | **Resistor** | 220Ω, 1/4W | 3 | Limitação de corrente dos LEDs |
 | **Protoboard** | 830 pontos | 1 | Base para montagem do circuito |
-| **Jumpers** | Macho-macho | ~8 | Conexões elétricas |
+| **Jumpers** | - | 7 | Conexões elétricas |
 | **Cabo USB** | Tipo A/B | 1 | Alimentação e programação |
-
-### Cálculo dos Resistores
-
-Para cada LED, utilizamos a Lei de Ohm para dimensionar o resistor adequado:
-
-$$R = \frac{V_{fonte} - V_{LED}}{I_{LED}} = \frac{5V - 2V}{0.02A} = 150\Omega$$
-
-**Resistor escolhido:** 220Ω (valor comercial mais próximo, garantindo maior proteção)
-
----
 
 ## ⚡ Parte 1: Montagem Física
 
@@ -74,47 +60,19 @@ $$R = \frac{V_{fonte} - V_{LED}}{I_{LED}} = \frac{5V - 2V}{0.02A} = 150\Omega$$
 ```
 Arduino UNO
 ┌─────────────┐
-│  D8  ●──────┼──→ R220Ω ──→ LED Vermelho ──→ GND
-│  D9  ●──────┼──→ R220Ω ──→ LED Amarelo  ──→ GND
-│  D10 ●──────┼──→ R220Ω ──→ LED Verde    ──→ GND
+│  D8  ●──────┼──→ R330Ω ──→ LED Vermelho ──→ GND
+│  D9  ●──────┼──→ R330Ω ──→ LED Amarelo  ──→ GND
+│  D10 ●──────┼──→ R330Ω ──→ LED Verde    ──→ GND
 │  GND ●──────┼──→ Linha GND (protoboard)
 └─────────────┘
 ```
 
-### Passo a Passo da Montagem:
-
-1. **Preparação da Protoboard:**
-   - Posicionar os 3 LEDs verticalmente com espaçamento adequado
-   - Perna longa (ânodo +) voltada para cima
-   - Perna curta (cátodo -) voltada para baixo
-
-2. **Conexão dos Resistores:**
-   - Conectar um resistor de 220Ω em **série** com cada LED
-   - Uma ponta no ânodo do LED, outra ponta conectada ao pino digital
-
-3. **Ligações ao Arduino:**
-   - Jumper do pino 8 → resistor do LED vermelho
-   - Jumper do pino 9 → resistor do LED amarelo
-   - Jumper do pino 10 → resistor do LED verde
-
-4. **Terra Comum:**
-   - Conectar todos os cátodos dos LEDs ao GND do Arduino
-   - Usar a linha negativa da protoboard para organização
 
 ### 📸 Imagens da Montagem
 
 #### Vista Geral do Circuito
-![Montagem completa do semáforo](./assets/montagem_completa.jpg)
+![Montagem completa do semáforo](./assets/montagem_completa.jpeg)
 *Legenda: Protoboard com os três LEDs e resistores conectados ao Arduino UNO*
-
-#### Detalhes das Conexões
-![Detalhe das conexões na protoboard](./assets/conexoes_detalhe.jpg)
-*Legenda: Organização dos fios e resistores com boa disposição*
-
-#### Circuito no TinkerCad (opcional)
-![Simulação no TinkerCad](./assets/tinkercad_simulacao.png)
-*Legenda: Esquema de simulação do circuito antes da montagem física*
-
 ---
 
 ## 💻 Parte 2: Programação e Lógica
@@ -322,86 +280,11 @@ void loop() {
 
 ---
 
-## 🌟 Diferenciais Implementados
-
-### 1. **Uso de Ponteiros em C/C++**
-- ✅ Implementação de aritmética de ponteiros
-- ✅ Acesso dinâmico aos pinos através de `*(ptrLeds + i)`
-- ✅ Demonstra domínio de conceitos avançados de programação
-
-**Vantagens:**
-- Código mais eficiente em termos de memória
-- Facilita escalabilidade (adicionar mais LEDs)
-- Prática importante para programação embarcada
-
-### 2. **Modularização com Funções**
-- ✅ `apagarLeds()` - responsabilidade única
-- ✅ `acenderLuz(int indice)` - parametrizada e reutilizável
-- ✅ Código limpo seguindo princípios de Clean Code
-
-### 3. **Boas Práticas de Código**
-- ✅ Comentários explicativos em cada seção
-- ✅ Nomes de variáveis descritivos (`tempoVermelho`, `ptrLeds`)
-- ✅ Uso de constantes (`#define`, `const`)
-- ✅ Separação lógica em blocos (setup, loop, funções)
-- ✅ Indentação e formatação consistentes
-
-### 4. **Organização e Documentação**
-- ✅ Cabeçalho com informações do projeto
-- ✅ Separação visual com comentários de seções
-- ✅ README completo e profissional
-
----
-
-## ✅ Testes e Validação
-
-### Metodologia de Teste
-
-#### 1. **Teste de Continuidade**
-- ✅ Verificar conexões com multímetro antes de energizar
-- ✅ Conferir polaridade dos LEDs
-
-#### 2. **Teste de Funcionamento Individual**
-- ✅ Acender cada LED separadamente para validar pino e resistor
-- ✅ Usar código de teste simples:
-```cpp
-digitalWrite(LED_VERMELHO, HIGH);
-delay(1000);
-digitalWrite(LED_VERMELHO, LOW);
-```
-
-#### 3. **Teste de Temporização**
-- ✅ Usar cronômetro do celular para medir cada fase
-- ✅ Validar precisão dos delays
-
-#### 4. **Teste de Ciclo Completo**
-- ✅ Observar múltiplas repetições (mínimo 5 ciclos)
-- ✅ Verificar ausência de falhas ou comportamentos inesperados
-
-### Resultados dos Testes
-
-| Fase | Tempo Esperado | Tempo Medido | Status |
-|------|---------------|--------------|--------|
-| Vermelho | 6000ms | 6002ms | ✅ Aprovado |
-| Verde | 4000ms | 4001ms | ✅ Aprovado |
-| Amarelo | 2000ms | 2000ms | ✅ Aprovado |
-| **Ciclo Total** | **12000ms** | **12003ms** | ✅ **Aprovado** |
-
-**Desvio máximo:** ±0,025% (desprezível, causado por overhead do Arduino)
 
 ### 🎥 Vídeo de Demonstração
 
-**Link do vídeo:** [INSERIR LINK AQUI]
+**Link do vídeo:** [https://youtu.be/_99DmmzPzc8?si=b8L1tCLH-umDrfcp]
 
-**Conteúdo do vídeo:**
-- [ ] Apresentação pessoal (nome completo e curso)
-- [ ] Explicação rápida do projeto
-- [ ] Demonstração da montagem física (câmera mostrando protoboard)
-- [ ] Execução do semáforo com cronômetro visível
-- [ ] Medição dos tempos de cada fase
-- [ ] Rosto do autor aparecendo (comprovação de autoria)
-
-**Duração sugerida:** 2-3 minutos
 
 ---
 
@@ -446,55 +329,3 @@ digitalWrite(LED_VERMELHO, LOW);
 ```
 
 ---
-
-### Média Final
-
-**Nota Final:** ( ___ + ___ ) / 2 = **___ / 10**
-
----
-
-## 📚 Referências
-
-1. **Arduino Documentation**  
-   https://www.arduino.cc/reference/en/
-
-2. **Lei de Ohm e Dimensionamento de Resistores**  
-   https://www.electronics-tutorials.ws/resistor/res_2.html
-
-3. **Semáforos no Brasil - CONTRAN**  
-   Resolução CONTRAN nº 483/2014 - Sinalização Semafórica
-
-4. **Ponteiros em C/C++**  
-   https://www.learn-c.org/en/Pointers
-
-5. **Arduino IDE**  
-   https://www.arduino.cc/en/software
-
----
-
-## 📁 Estrutura do Repositório
-
-```
-ponderada_30-10-2025_(semaforo)/
-│
-├── semaforo.md                 # Esta documentação
-├── semaforo.ino               # Código Arduino
-│
-└── assets/
-    ├── montagem_completa.jpg   # Foto da montagem física
-    ├── conexoes_detalhe.jpg    # Detalhe das conexões
-    ├── tinkercad_simulacao.png # Simulação (opcional)
-    └── funcionamento.mp4       # Vídeo de demonstração
-```
-
----
-
-## 📧 Contato
-
-**Christian Gandra**  
-📧 Email: [seu.email@sou.inteli.edu.br]  
-🔗 GitHub: [@ChristianGandra21](https://github.com/ChristianGandra21)
-
----
-
-**Desenvolvido com dedicação para o Departamento de Engenharia de Trânsito - Butantã** 🚦✨
