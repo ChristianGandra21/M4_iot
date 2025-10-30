@@ -1,8 +1,3 @@
-// === SEMÁFORO OFFLINE - ATIVIDADE PONDERADA ===
-// Autor: Christian Gandra
-// Curso: Programação e Eletrônica Básica
-// Descrição: Controle de semáforo com ponteiros e temporização
-
 // ==== DEFINIÇÃO DOS PINOS ====
 #define LED_VERMELHO 8
 #define LED_AMARELO  9
